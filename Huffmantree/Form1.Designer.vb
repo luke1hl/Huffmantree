@@ -38,10 +38,10 @@ Partial Class Form1
         '
         Me.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.grid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Letters, Me.Frequency, Me.Code})
-        Me.grid.Location = New System.Drawing.Point(228, 12)
+        Me.grid.Location = New System.Drawing.Point(120, 12)
         Me.grid.Name = "grid"
         Me.grid.RowTemplate.Height = 24
-        Me.grid.Size = New System.Drawing.Size(343, 378)
+        Me.grid.Size = New System.Drawing.Size(451, 378)
         Me.grid.TabIndex = 0
         '
         'Letters

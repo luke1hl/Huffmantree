@@ -43,8 +43,43 @@
         Next
         frequencyanalysis()
         array = sort.bubblesort(array)
+        Dim liststart As Integer = 0
+        While array(liststart).weighting = 0
+            liststart += 1
+        End While
+        holderarray = array
+        array = Nothing
+        Dim counter As Integer = 0
+        For i = liststart To holderarray.Length - 1
+            array(counter) = holderarray(i)
+            counter += 1
+        Next
+    End Sub
+
+    Private Sub append()
+        Dim minimumone As Cnode = array(0)
+        Dim minimumtwo As Cnode = array(1)
+        Dim oneplustwo As Integer = minimumone.weighting + minimumtwo.weighting
+        Dim kids As Cnode() = {minimumone, minimumtwo}
+        Dim newNodeVal As New Cnode(oneplustwo, Nothing, kids)
+        array(array.Length - 1) = newNodeVal
+        array(0) = Nothing
+        array(1) = Nothing
 
     End Sub
 
+    Private Sub removethenothings()
+        Dim nadacount As Integer = 0
+        For i = 0 To array.Length - 1
+            If array(i) Is Nothing Then
+                nadacount += 1
+            End If
+        Next
+        holderarray = array
+        array = Nothing
+        For i = nadacount + 1 To holderarray.Length
+
+        Next
+    End Sub
 
 End Class
