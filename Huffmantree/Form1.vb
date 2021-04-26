@@ -22,11 +22,11 @@
             'MsgBox(distinctarray(i) + "   =   " + counter.ToString)
         Next
     End Sub
-    Private Function initialize()
+    Private Sub initialize()
         For i = 0 To array.Length - 1
             array(i) = New Cnode(Nothing, Nothing, Nothing)
         Next
-    End Function
+    End Sub
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         initialize()
 
@@ -46,7 +46,7 @@
         frequencyanalysis()
 
         array = sort.bubblesort(array)
-
+        MsgBox("list has been sorted")
         Dim liststart As Integer = 0
         For i = 0 To array.Length - 1
             ' MsgBox(array(i).weighting)
@@ -60,7 +60,7 @@
     End Sub
 
     Private Sub append()
-        MsgBox("append")
+        'MsgBox("append")
         If array.Length > 1 Then
             Dim minimumone As Cnode = array(0)
             Dim minimumtwo As Cnode = array(1)
@@ -97,8 +97,18 @@
                 array(i).weighting += 0
 
             Catch
-                ReDim Preserve array(i)
+                holderarray = array
+                ReDim array(i - 1)
+                For a = 0 To array.Length - 1
+                    array(a) = holderarray(a)
+
+                Next
+                Exit For
             End Try
+        Next
+        For i = 0 To array.Length - 1
+
+            '  MsgBox(array(i).weighting & " " & i)
         Next
     End Sub
 
