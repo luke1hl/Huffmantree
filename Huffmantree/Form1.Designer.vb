@@ -24,15 +24,12 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.grid = New System.Windows.Forms.DataGridView()
-        Me.Letters = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Frequency = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Code = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.CnodeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.WeightingDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LetterofnodeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PointerDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        CType(Me.grid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CnodeBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -40,35 +37,16 @@ Partial Class Form1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'grid
+        'DataGridView1
         '
-        Me.grid.AutoGenerateColumns = False
-        Me.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.grid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Letters, Me.Frequency, Me.Code, Me.WeightingDataGridViewTextBoxColumn, Me.LetterofnodeDataGridViewTextBoxColumn, Me.PointerDataGridViewTextBoxColumn})
-        Me.grid.DataSource = Me.CnodeBindingSource
-        Me.grid.Location = New System.Drawing.Point(158, 12)
-        Me.grid.Name = "grid"
-        Me.grid.RowTemplate.Height = 24
-        Me.grid.Size = New System.Drawing.Size(451, 378)
-        Me.grid.TabIndex = 0
-        '
-        'Letters
-        '
-        Me.Letters.HeaderText = "Letters"
-        Me.Letters.Name = "Letters"
-        Me.Letters.ReadOnly = True
-        '
-        'Frequency
-        '
-        Me.Frequency.HeaderText = "Frequency"
-        Me.Frequency.Name = "Frequency"
-        Me.Frequency.ReadOnly = True
-        '
-        'Code
-        '
-        Me.Code.HeaderText = "Code"
-        Me.Code.Name = "Code"
-        Me.Code.ReadOnly = True
+        Me.DataGridView1.AutoGenerateColumns = False
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.WeightingDataGridViewTextBoxColumn, Me.LetterofnodeDataGridViewTextBoxColumn, Me.PointerDataGridViewTextBoxColumn})
+        Me.DataGridView1.DataSource = Me.CnodeBindingSource
+        Me.DataGridView1.Location = New System.Drawing.Point(168, 58)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.Size = New System.Drawing.Size(240, 150)
+        Me.DataGridView1.TabIndex = 0
         '
         'CnodeBindingSource
         '
@@ -94,21 +72,19 @@ Partial Class Form1
         '
         'Form1
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.grid)
+        Me.ClientSize = New System.Drawing.Size(600, 366)
+        Me.Controls.Add(Me.DataGridView1)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "Form1"
-        CType(Me.grid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CnodeBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
-    Friend WithEvents grid As DataGridView
-    Friend WithEvents Letters As DataGridViewTextBoxColumn
-    Friend WithEvents Frequency As DataGridViewTextBoxColumn
-    Friend WithEvents Code As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents WeightingDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents LetterofnodeDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents PointerDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
