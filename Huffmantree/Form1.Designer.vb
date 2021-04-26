@@ -22,12 +22,18 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.grid = New System.Windows.Forms.DataGridView()
         Me.Letters = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Frequency = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Code = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CnodeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.WeightingDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LetterofnodeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PointerDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.grid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CnodeBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'OpenFileDialog1
@@ -36,9 +42,11 @@ Partial Class Form1
         '
         'grid
         '
+        Me.grid.AutoGenerateColumns = False
         Me.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.grid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Letters, Me.Frequency, Me.Code})
-        Me.grid.Location = New System.Drawing.Point(120, 12)
+        Me.grid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Letters, Me.Frequency, Me.Code, Me.WeightingDataGridViewTextBoxColumn, Me.LetterofnodeDataGridViewTextBoxColumn, Me.PointerDataGridViewTextBoxColumn})
+        Me.grid.DataSource = Me.CnodeBindingSource
+        Me.grid.Location = New System.Drawing.Point(158, 12)
         Me.grid.Name = "grid"
         Me.grid.RowTemplate.Height = 24
         Me.grid.Size = New System.Drawing.Size(451, 378)
@@ -62,6 +70,28 @@ Partial Class Form1
         Me.Code.Name = "Code"
         Me.Code.ReadOnly = True
         '
+        'CnodeBindingSource
+        '
+        Me.CnodeBindingSource.DataSource = GetType(Huffmantree.Cnode)
+        '
+        'WeightingDataGridViewTextBoxColumn
+        '
+        Me.WeightingDataGridViewTextBoxColumn.DataPropertyName = "weighting"
+        Me.WeightingDataGridViewTextBoxColumn.HeaderText = "weighting"
+        Me.WeightingDataGridViewTextBoxColumn.Name = "WeightingDataGridViewTextBoxColumn"
+        '
+        'LetterofnodeDataGridViewTextBoxColumn
+        '
+        Me.LetterofnodeDataGridViewTextBoxColumn.DataPropertyName = "letterofnode"
+        Me.LetterofnodeDataGridViewTextBoxColumn.HeaderText = "letterofnode"
+        Me.LetterofnodeDataGridViewTextBoxColumn.Name = "LetterofnodeDataGridViewTextBoxColumn"
+        '
+        'PointerDataGridViewTextBoxColumn
+        '
+        Me.PointerDataGridViewTextBoxColumn.DataPropertyName = "pointer"
+        Me.PointerDataGridViewTextBoxColumn.HeaderText = "pointer"
+        Me.PointerDataGridViewTextBoxColumn.Name = "PointerDataGridViewTextBoxColumn"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -70,6 +100,7 @@ Partial Class Form1
         Me.Controls.Add(Me.grid)
         Me.Name = "Form1"
         CType(Me.grid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CnodeBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -78,4 +109,8 @@ Partial Class Form1
     Friend WithEvents Letters As DataGridViewTextBoxColumn
     Friend WithEvents Frequency As DataGridViewTextBoxColumn
     Friend WithEvents Code As DataGridViewTextBoxColumn
+    Friend WithEvents WeightingDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents LetterofnodeDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents PointerDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents CnodeBindingSource As BindingSource
 End Class

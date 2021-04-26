@@ -1,5 +1,5 @@
 ﻿Public Class Csort
-    Function bubblesort(numlist() As Cnode)
+    Function bubblesort(numlist)
 
         Dim Count As Integer = 0
         Dim Swapvalue As Cnode
@@ -19,7 +19,7 @@
             Next
         Next
         For i = 0 To numlist.Length - 1
-            MsgBox(numlist(i).weighting)
+            ' MsgBox(numlist(i).weighting)
         Next
         Return numlist
     End Function
