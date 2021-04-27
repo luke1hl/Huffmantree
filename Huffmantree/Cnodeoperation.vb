@@ -1,15 +1,16 @@
 ﻿Public Class Cnodeoperation
-    Property nodes As Cnode()
+    Property nodes As Cnode() = {Nothing}
     Private sorter As New Csort
     Function returnnode()
         Return nodes
     End Function
-    Sub add(ByRef node As Cnode)
-        MsgBox(node.letterofnode)
+    Sub addnode(ByRef node As Cnode)
         ReDim Preserve nodes(nodes.Length)
         nodes(nodes.Length - 1) = node
-        removethenothings(nodes)
-        sorter.bubblesort(nodes)
+        '  MsgBox(nodes.Length)
+        'removethenothings(nodes)
+        'sorter.bubblesort(nodes)
+
     End Sub
     Sub removethenothings(ByRef arrayz As Cnode())
         Dim pointernode(0) As Cnode
@@ -22,9 +23,11 @@
         For i = 0 To arrayz.Length - 1
             If arrayz(i) Is Nothing Then
                 howmanynothings += 1
+
             End If
         Next
-
+        ' MsgBox(howmanynothings)
+        'MsgBox(nodes.Length)
 
 
 

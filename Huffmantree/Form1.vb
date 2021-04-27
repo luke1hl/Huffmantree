@@ -25,10 +25,33 @@
         Next
     End Sub
     Private Sub addtogrid()
-        'For i = 0 To operators.nodes.Length - 1
-        '    MsgBox(operators.nodes(i).pointer)
+        Dim dt As New DataTable
 
-        'Next
+        dt.Columns.Add("Character", Type.GetType("System.String"))
+        dt.Columns.Add("frequency", Type.GetType("System.Int64"))
+        dt.Columns.Add("coding", Type.GetType("System.String"))
+
+        operators.removethenothings(operators.nodes)
+        ' MsgBox(operators.nodes.Length())
+        For i = 0 To operators.nodes.Length - 1
+            Dim dr As DataRow = dt.NewRow
+            dr("frequency") = operators.nodes(i).weighting
+            dr("Character") = operators.nodes(i).letterofnode
+            dr("coding") = operators.nodes(i).pointer
+            dt.Rows.Add(dr)
+        Next
+        dt.DefaultView.Sort = "frequency DESC"
+        dt = dt.DefaultView.ToTable
+        DataGridView1.DataSource = dt
+        '  DataGridView1.DataBindings.Add()
+        '  For i = 0 To operators.nodes.Length - 1
+        ' MsgBox(operators.nodes(i).letterofnode)
+        'DataGridView1.Rows.Insert(i + 1, New String() {operators.nodes(i).letterofnode, operators.nodes(i).weighting, operators.nodes(i).pointer})
+
+        '   Next
+        'DataGridView1.Sort(DataGridView1.Columns(2))
+
+        DataGridView1.Refresh()
     End Sub
 
 
@@ -50,7 +73,7 @@
                 findbinarycodes(node.childnodes(0), binchar, False)
             Else
                 node.childnodes(0).pointer = binchar + "0"
-                operators.add(node.childnodes(0))
+                operators.addnode(node.childnodes(0))
 
 
             End If
@@ -65,7 +88,7 @@
             Else
                 node.childnodes(1).pointer = binchar + "1"
 
-                operators.add(node.childnodes(1))
+                operators.addnode(node.childnodes(1))
 
 
             End If
@@ -122,6 +145,16 @@
         append(array)
         findbinarycodes(array(0), "", True)
         addtogrid()
+        determinesizes()
+    End Sub
+    Private Sub determinesizes()
+        sizeone.Text = texts.Length * 7
+        sizetwo.Text = 0
+        For i = 0 To operators.nodes.Length - 1
+            sizetwo.Text += operators.nodes(i).pointer.Length * operators.nodes(i).weighting
+        Next
+        sizeone.Text &= " bits"
+        sizetwo.Text &= " bits"
     End Sub
 
     Private Sub append(ByRef arrayz As Cnode())
@@ -133,8 +166,14 @@
             Dim oneplustwo As Integer = minimumone.weighting + minimumtwo.weighting
             Dim kids As Cnode() = {minimumone, minimumtwo}
             Dim newNodeVal As New Cnode(oneplustwo, Nothing, kids)
-            arrayz(1) = newNodeVal
+            arrayz(1) = Nothing
             arrayz(0) = Nothing
+            ReDim Preserve arrayz(arrayz.Length)
+
+
+
+            arrayz(arrayz.Length - 1) = newNodeVal
+
 
             operators.removethenothings(arrayz)
             arrayz = sort.bubblesort(arrayz)
