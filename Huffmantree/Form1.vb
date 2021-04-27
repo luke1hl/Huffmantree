@@ -6,7 +6,7 @@
     Private sort As New Csort
     Private operators As New Cnodeoperation
 
-    Private Sub frequencyanalysis()
+    Private Sub frequencyanalysis() 'counts how many characters in a string
         Dim chararray() As Char = texts.ToCharArray
         Dim distinctarray() As Char = chararray.Distinct.ToArray
 
@@ -24,7 +24,7 @@
             'MsgBox(distinctarray(i) + "   =   " + counter.ToString)
         Next
     End Sub
-    Private Sub addtogrid()
+    Private Sub addtogrid() 'loads the final array into the grid
         Dim dt As New DataTable
 
         dt.Columns.Add("Character", Type.GetType("System.String"))
@@ -35,40 +35,28 @@
         ' MsgBox(operators.nodes.Length())
         For i = 0 To operators.nodes.Length - 1
             Dim dr As DataRow = dt.NewRow
-            dr("frequency") = operators.nodes(i).weighting
+            dr("frequency") = operators.nodes(i).weighting 'creates all the different collumns
             dr("Character") = operators.nodes(i).letterofnode
             dr("coding") = operators.nodes(i).pointer
             dt.Rows.Add(dr)
         Next
-        dt.DefaultView.Sort = "frequency DESC"
+        dt.DefaultView.Sort = "frequency DESC" 'sorts the table by frequency
         dt = dt.DefaultView.ToTable
         DataGridView1.DataSource = dt
-        '  DataGridView1.DataBindings.Add()
-        '  For i = 0 To operators.nodes.Length - 1
-        ' MsgBox(operators.nodes(i).letterofnode)
-        'DataGridView1.Rows.Insert(i + 1, New String() {operators.nodes(i).letterofnode, operators.nodes(i).weighting, operators.nodes(i).pointer})
-
-        '   Next
-        'DataGridView1.Sort(DataGridView1.Columns(2))
 
         DataGridView1.Refresh()
     End Sub
-
-
-
-
-
-    Private Sub findbinarycodes(node As Cnode, binchar As String, startoftree As Boolean)
-        If startoftree = True Then
+    Private Sub findbinarycodes(node As Cnode, binchar As String, startoftree As Boolean) 'this gets the binary codes of all the characters once the trees been created
+        If startoftree = True Then 'checks to see if its the first character
             binchar = ""
         End If
-        lefttraverse(node, binchar)
-        righttraverse(node, binchar)
+        lefttraverse(node, binchar) 'traverses down the left hand side 
+        righttraverse(node, binchar) 'traverses down right hand side
     End Sub
     Private Sub lefttraverse(node As Cnode, binchar As String)
         If Not (node.childnodes(0) Is Nothing) Then 'for when it traverses down the left
             If node.childnodes(0).letterofnode Is Nothing Then
-                binchar += "0"
+                binchar += "0" 'adds zero for when it goes left
                 node.childnodes(0).pointer = binchar
                 findbinarycodes(node.childnodes(0), binchar, False)
             Else
@@ -81,7 +69,7 @@
     End Sub
     Private Sub righttraverse(node As Cnode, binchar As String) 'when it goes down the right
         If Not (node.childnodes(1) Is Nothing) Then
-            If node.childnodes(1).letterofnode Is Nothing Then
+            If node.childnodes(1).letterofnode Is Nothing Then 'does exactly the same as above but adds a 1 since its going right
                 binchar += "1"
                 node.childnodes(1).pointer = binchar
                 findbinarycodes(node.childnodes(1), binchar, False)
@@ -117,13 +105,17 @@
         initialize()
 
         Select Case OpenFileDialog1.ShowDialog()
-            Case DialogResult.OK
-                filePath = OpenFileDialog1.FileName
-                texts = My.Computer.FileSystem.ReadAllText(filePath)
-            Case Else
-        End Select
+                Case DialogResult.OK
+                    filePath = OpenFileDialog1.FileName
+                    texts = My.Computer.FileSystem.ReadAllText(filePath)
+                Case Else
+                    MsgBox("you didn't open a file...closing program")
+                    Environment.Exit(0)
+            End Select
 
-        For i = 0 To texts.Length - 1
+
+
+            For i = 0 To texts.Length - 1
             If Asc(texts(i)) > 128 Then
                 texts = Replace(texts, texts(i), "")
             End If

@@ -1,6 +1,6 @@
 ﻿Public Class Csort
-    Function bubblesort(numlist)
-
+    Function bubblesort(numlist) 'does a bubble sort
+        'found this in one of my old coding projects but its slightly altered to work with Cnode
         Dim Count As Integer = 0
         Dim Swapvalue As Cnode
         For i = 0 To numlist.Length - 1
