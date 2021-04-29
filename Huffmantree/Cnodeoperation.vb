@@ -7,9 +7,7 @@
     Sub addnode(ByRef node As Cnode)
         ReDim Preserve displaynodes(displaynodes.Length)
         displaynodes(displaynodes.Length - 1) = node
-        '  MsgBox(nodes.Length)
-        'removethenothings(nodes)
-        'sorter.bubblesort(nodes)
+
 
     End Sub
     Sub removethenothings(ByRef arrayz As Cnode())

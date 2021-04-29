@@ -30,6 +30,7 @@ Partial Class Form1
         Me.sizeone = New System.Windows.Forms.Label()
         Me.sizetwo = New System.Windows.Forms.Label()
         Me.CnodeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Percentage = New System.Windows.Forms.TextBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CnodeBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -85,11 +86,19 @@ Partial Class Form1
         '
         Me.CnodeBindingSource.DataSource = GetType(Huffmantree.Cnode)
         '
+        'Percentage
+        '
+        Me.Percentage.Location = New System.Drawing.Point(586, 223)
+        Me.Percentage.Name = "Percentage"
+        Me.Percentage.Size = New System.Drawing.Size(100, 22)
+        Me.Percentage.TabIndex = 5
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.Percentage)
         Me.Controls.Add(Me.sizetwo)
         Me.Controls.Add(Me.sizeone)
         Me.Controls.Add(Me.Label2)
@@ -111,4 +120,5 @@ Partial Class Form1
     Friend WithEvents Label2 As Label
     Friend WithEvents sizeone As Label
     Friend WithEvents sizetwo As Label
+    Friend WithEvents Percentage As TextBox
 End Class

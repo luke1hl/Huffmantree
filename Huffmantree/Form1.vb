@@ -145,8 +145,11 @@
         For i = 0 To operators.displaynodes.Length - 1
             sizetwo.Text += operators.displaynodes(i).pointer.Length * operators.displaynodes(i).weighting
         Next
+        Percentage.Text = sizetwo.Text / sizeone.Text * 100 & " %"
+
         sizeone.Text &= " bits"
         sizetwo.Text &= " bits"
+
     End Sub
 
     Private Sub append(ByRef arrayz As Cnode())
