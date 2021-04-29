@@ -31,13 +31,13 @@
         dt.Columns.Add("frequency", Type.GetType("System.Int64"))
         dt.Columns.Add("coding", Type.GetType("System.String"))
 
-        operators.removethenothings(operators.nodes)
+        operators.removethenothings(operators.displaynodes)
         ' MsgBox(operators.nodes.Length())
-        For i = 0 To operators.nodes.Length - 1
+        For i = 0 To operators.displaynodes.Length - 1
             Dim dr As DataRow = dt.NewRow
-            dr("frequency") = operators.nodes(i).weighting 'creates all the different collumns
-            dr("Character") = operators.nodes(i).letterofnode
-            dr("coding") = operators.nodes(i).pointer
+            dr("frequency") = operators.displaynodes(i).weighting 'creates all the different collumns
+            dr("Character") = operators.displaynodes(i).letterofnode
+            dr("coding") = operators.displaynodes(i).pointer
             dt.Rows.Add(dr)
         Next
         dt.DefaultView.Sort = "frequency DESC" 'sorts the table by frequency
@@ -105,17 +105,17 @@
         initialize()
 
         Select Case OpenFileDialog1.ShowDialog()
-                Case DialogResult.OK
-                    filePath = OpenFileDialog1.FileName
-                    texts = My.Computer.FileSystem.ReadAllText(filePath)
-                Case Else
-                    MsgBox("you didn't open a file...closing program")
-                    Environment.Exit(0)
-            End Select
+            Case DialogResult.OK
+                filePath = OpenFileDialog1.FileName
+                texts = My.Computer.FileSystem.ReadAllText(filePath)
+            Case Else
+                MsgBox("you didn't open a file...closing program")
+                Environment.Exit(0)
+        End Select
 
 
 
-            For i = 0 To texts.Length - 1
+        For i = 0 To texts.Length - 1
             If Asc(texts(i)) > 128 Then
                 texts = Replace(texts, texts(i), "")
             End If
@@ -142,8 +142,8 @@
     Private Sub determinesizes()
         sizeone.Text = texts.Length * 7
         sizetwo.Text = 0
-        For i = 0 To operators.nodes.Length - 1
-            sizetwo.Text += operators.nodes(i).pointer.Length * operators.nodes(i).weighting
+        For i = 0 To operators.displaynodes.Length - 1
+            sizetwo.Text += operators.displaynodes(i).pointer.Length * operators.displaynodes(i).weighting
         Next
         sizeone.Text &= " bits"
         sizetwo.Text &= " bits"
@@ -155,8 +155,10 @@
             'MsgBox("appending")
             Dim minimumone As Cnode = arrayz(0)
             Dim minimumtwo As Cnode = arrayz(1)
-            Dim oneplustwo As Integer = minimumone.weighting + minimumtwo.weighting
             Dim kids As Cnode() = {minimumone, minimumtwo}
+
+
+            Dim oneplustwo As Integer = minimumone.weighting + minimumtwo.weighting
             Dim newNodeVal As New Cnode(oneplustwo, Nothing, kids)
             arrayz(1) = Nothing
             arrayz(0) = Nothing
@@ -170,9 +172,11 @@
             operators.removethenothings(arrayz)
             arrayz = sort.bubblesort(arrayz)
             'MsgBox(arrayz.Length)
-            append(arrayz)
+            append(arrayz) 'recures back through to add everything back to the tree
         End If
     End Sub
 
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
 
+    End Sub
 End Class

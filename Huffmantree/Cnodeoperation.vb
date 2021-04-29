@@ -1,12 +1,12 @@
 ﻿Public Class Cnodeoperation
-    Property nodes As Cnode() = {Nothing}
+    Property displaynodes As Cnode() = {Nothing} 'holds the final array for when your displayying
     Private sorter As New Csort
     Function returnnode()
-        Return nodes
+        Return displaynodes
     End Function
     Sub addnode(ByRef node As Cnode)
-        ReDim Preserve nodes(nodes.Length)
-        nodes(nodes.Length - 1) = node
+        ReDim Preserve displaynodes(displaynodes.Length)
+        displaynodes(displaynodes.Length - 1) = node
         '  MsgBox(nodes.Length)
         'removethenothings(nodes)
         'sorter.bubblesort(nodes)

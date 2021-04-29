@@ -44,7 +44,7 @@ Partial Class Form1
         Me.DataGridView1.Location = New System.Drawing.Point(43, 57)
         Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(448, 290)
+        Me.DataGridView1.Size = New System.Drawing.Size(480, 290)
         Me.DataGridView1.TabIndex = 0
         '
         'Label1
